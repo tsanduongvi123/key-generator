@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Key của bạn</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.ibb.co/RT87zW12/c5f34eb8b4c87cedae7f9ae79b1e170e.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 30px;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .key-box {
+      margin: 50px auto;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: white;
+      width: fit-content;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 1400% 1400%;
+      animation: rainbowBg 10s linear infinite;
+      border: 6px solid transparent;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    @keyframes rainbowBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .petal {
+      position: absolute;
+      top: -50px;
+      width: 20px;
+      height: 20px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/415/415733.png');
+      background-size: cover;
+      opacity: 0.7;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .vip-info {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1em;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      line-height: 1.6;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <div class="key-box" id="keyBox">DGVIKAKA12345</div>
+
+  <div class="vip-info">
+    Mua key VIP liên hệ Zalo <strong>Đường Vĩ</strong>: <strong>0785308626</strong><br>
+    10k / 10 ngày | 20k / 1 tháng | 50k / 3 tháng
+  </div>
+
+  <script>
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    document.getElementById("title").innerText =
+      `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
+
+    // Hoa anh đào rơi
+    for (let i = 0; i < 20; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = `${Math.random() * 100}vw`;
+      petal.style.animationDuration = `${5 + Math.random() * 5}s`;
+      petal.style.opacity = Math.random();
+      document.body.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
