@@ -224,7 +224,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const linkId = urlParams.get('id') || 'default';
     const storageKey = `key_${linkId}`;
-    const keyURL = "https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key.json?cache=" + new Date().getTime();
+    const keyURL = "https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key_data.json?cache=" + new Date().getTime();
     const statusMessage = document.getElementById("statusMessage");
 
     // Kiểm tra link trước khi fetch
