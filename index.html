@@ -22,38 +22,35 @@
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15), rgba(255, 255, 0, 0.15));
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(45deg, rgba(255,0,255,0.15), rgba(0,255,255,0.15), rgba(255,255,0,0.15));
       background-size: 400% 400%;
       animation: glow 12s ease-in-out infinite;
       z-index: -1;
     }
     @keyframes glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     h1 {
       text-align: center;
       font-size: 1.8em;
       margin: 10px 0;
-      text-shadow: 0 0 12px rgba(255, 0, 255, 0.9), 0 0 24px rgba(0, 255, 255, 0.9);
+      text-shadow: 0 0 12px rgba(255,0,255,0.9), 0 0 24px rgba(0,255,255,0.9);
       animation: neonPulse 2s ease-in-out infinite;
     }
     @keyframes neonPulse {
-      0%, 100% { text-shadow: 0 0 12px rgba(255, 0, 255, 0.9), 0 0 24px rgba(0, 255, 255, 0.9); }
-      50% { text-shadow: 0 0 18px rgba(255, 0, 255, 1), 0 0 36px rgba(0, 255, 255, 1); }
+      0%,100% {text-shadow: 0 0 12px rgba(255,0,255,0.9), 0 0 24px rgba(0,255,255,0.9);}
+      50% {text-shadow: 0 0 18px rgba(255,0,255,1), 0 0 36px rgba(0,255,255,1);}
     }
     .vip-info {
       text-align: center;
       font-size: 1em;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0,0,0,0.75);
       padding: 12px 20px;
       line-height: 1.6;
-      box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
+      box-shadow: 0 0 12px rgba(255,0,255,0.6);
       border-radius: 15px;
       border: 2px solid transparent;
       border-image: linear-gradient(45deg, cyan, magenta, yellow, cyan) 1;
@@ -62,15 +59,15 @@
       max-width: 90%;
     }
     .key-box-wrapper {
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       margin: 10px 0;
       animation: float 3s ease-in-out infinite;
     }
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-10px);}
     }
     .key-border {
       padding: 12px;
@@ -78,83 +75,54 @@
       background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, violet, red);
       background-size: 600% 600%;
       animation: rainbowBorder 4s linear infinite;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 0, 255, 0.6);
+      box-shadow: 0 0 25px rgba(255,255,255,0.9), 0 0 40px rgba(255,0,255,0.6);
       border: 4px solid transparent;
       border-image: linear-gradient(45deg, cyan, magenta, yellow, cyan) 1;
       border-image-slice: 1;
     }
     @keyframes rainbowBorder {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .key-box {
       padding: 12px 30px;
       font-size: 1.4em;
       font-weight: bold;
       color: white;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 50%;
-      text-shadow: 1px 1px 5px black;
       background: linear-gradient(45deg, cyan, magenta, yellow, cyan);
       background-size: 600% 600%;
       animation: rainbowText 4s linear infinite;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      border-radius: 50%;
+      text-shadow: 1px 1px 5px black;
     }
     @keyframes rainbowText {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .copy-btn {
-      display: block;
+      display: none;
       margin: 10px auto;
       padding: 10px 25px;
       font-size: 1em;
       border: none;
       border-radius: 20px;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0,0,0,0.75);
       color: white;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 12px rgba(255,255,255,0.6);
       border: 2px solid transparent;
       border-image: linear-gradient(45deg, cyan, magenta, yellow, cyan) 1;
       border-image-slice: 1;
     }
     .copy-btn:hover {
-      background: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 0 18px rgba(255, 0, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.8);
+      background: rgba(0,0,0,0.9);
+      box-shadow: 0 0 18px rgba(255,0,255,0.8), 0 0 30px rgba(0,255,255,0.8);
       transform: scale(1.05);
-    }
-    .petal {
-      position: absolute;
-      top: -50px;
-      width: 20px;
-      height: 20px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/415/415733.png');
-      background-size: cover;
-      opacity: 0.7;
-      animation: fall linear infinite;
-      filter: hue-rotate(calc(360deg * var(--random-hue)));
-    }
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
-    .sparkle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent);
-      border-radius: 50%;
-      animation: sparkle 1.5s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0.5); }
-      50% { opacity: 1; transform: scale(1.2); }
     }
     .status-message {
       text-align: center;
@@ -162,14 +130,15 @@
       margin: 10px 0;
       color: yellow;
       text-shadow: 1px 1px 2px black;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0,0,0,0.75);
       padding: 8px 20px;
       border-radius: 15px;
-      box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
+      box-shadow: 0 0 12px rgba(255,0,255,0.6);
       border: 1px solid transparent;
       border-image: linear-gradient(45deg, cyan, magenta, yellow, cyan) 1;
       border-image-slice: 1;
       max-width: 90%;
+      min-height: 30px;
     }
   </style>
 </head>
@@ -179,114 +148,105 @@
     10k / 10 ngày | 20k / 1 tháng | 50k / 3 tháng
   </div>
   <h1 id="title">Đang tải key...</h1>
+
   <div class="key-box-wrapper">
     <div class="key-border">
-      <div class="key-box" id="keyBox">Đang lấy key...</div>
+      <div class="key-box" id="key">...</div>
     </div>
   </div>
-  <div class="status-message" id="statusMessage"></div>
-  <button class="copy-btn" onclick="copyKey()">Sao chép key</button>
+
+  <button class="copy-btn" id="copyBtn">Sao chép key</button>
+
+  <div class="status-message" id="status"></div>
+
   <script>
-    for (let i = 0; i < 50; i++) {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = `${Math.random() * 100}vw`;
-      petal.style.animationDuration = `${3 + Math.random() * 5}s`;
-      petal.style.opacity = Math.random() * 0.5 + 0.4;
-      petal.style.transform = `scale(${0.5 + Math.random() * 0.5})`;
-      petal.style.setProperty('--random-hue', Math.random());
-      document.body.appendChild(petal);
-    }
+    const rawKeyURL = 'https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key_data.json';
 
-    for (let i = 0; i < 12; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = `${35 + Math.random() * 30}%`;
-      sparkle.style.top = `${25 + Math.random() * 30}%`;
-      sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
-      document.querySelector('.key-box-wrapper').appendChild(sparkle);
-    }
+    const titleEl = document.getElementById('title');
+    const keyBoxWrapper = document.querySelector('.key-box-wrapper');
+    const keyBox = document.getElementById('key');
+    const copyBtn = document.getElementById('copyBtn');
+    const status = document.getElementById('status');
 
-    function copyKey() {
-      const key = document.getElementById("keyBox").innerText;
-      navigator.clipboard.writeText(key).then(() => {
-        alert("Đã sao chép key: " + key);
-      }).catch(err => {
-        alert("Lỗi sao chép key!");
-        console.error("Copy error:", err);
-      });
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const linkId = urlParams.get('id') || 'default';
-    const storageKey = `key_${linkId}`;
-    const keyURL = `https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key_data.json?nocache=${Date.now()}`;
-    const statusMessage = document.getElementById("statusMessage");
-
-    async function checkLink() {
-      statusMessage.innerText = "Đang kiểm tra link...";
-      try {
-        const response = await fetch(keyURL, { method: 'HEAD' });
-        if (response.ok) {
-          statusMessage.innerText = "Link hợp lệ, đang tải key...";
-          return true;
-        } else {
-          statusMessage.innerText = `Lỗi: Không tìm thấy file key_data.json (Status: ${response.status})`;
-          document.getElementById("keyBox").innerText = "Lỗi tải key!";
-          return false;
-        }
-      } catch (err) {
-        statusMessage.innerText = "Lỗi kết nối đến GitHub!";
-        document.getElementById("keyBox").innerText = "Lỗi tải key!";
-        console.error("Link check error:", err);
-        return false;
-      }
+    function getKeyFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('key');  // Lấy giá trị ?key=...
     }
 
     async function loadKey() {
-      const storedKey = localStorage.getItem(storageKey);
-      if (storedKey) {
-        document.getElementById("keyBox").innerText = storedKey;
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const yyyy = today.getFullYear();
-        document.getElementById("title").innerText = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
-        statusMessage.innerText = "Tải key thành công (từ bộ nhớ)!";
+      const urlKey = getKeyFromURL();
+
+      if (urlKey) {
+        // Nếu URL có key thì hiển thị luôn, không cần gọi file JSON
+        keyBox.textContent = urlKey;
+        keyBoxWrapper.style.display = 'flex';
+        copyBtn.style.display = 'inline-block';
+
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        titleEl.textContent = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
+
+        status.textContent = 'Key lấy từ URL thành công!';
         return;
       }
 
-      const linkValid = await checkLink();
-      if (!linkValid) return;
-
+      // Nếu không có key trong URL thì load random như cũ
       try {
-        const res = await fetch(keyURL);
-        console.log("Response status:", res.status);
-        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-        const data = await res.json();
-        console.log("Data received:", data);
+        status.textContent = 'Đang tải file key...';
+        const response = await fetch(rawKeyURL);
+        if (!response.ok) throw new Error('Không thể tải file key_data.json');
+        const data = await response.json();
 
-        let keys = Array.isArray(data) ? data : (data.vip_keys || data.keys);
-        if (Array.isArray(keys) && keys.length > 0) {
-          const randomKey = keys[Math.floor(Math.random() * keys.length)];
-          document.getElementById("keyBox").innerText = randomKey;
-          localStorage.setItem(storageKey, randomKey);
-          const today = new Date();
-          const dd = String(today.getDate()).padStart(2, '0');
-          const mm = String(today.getMonth() + 1).padStart(2, '0');
-          const yyyy = today.getFullYear();
-          document.getElementById("title").innerText = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
-          statusMessage.innerText = "Tải key thành công!";
-        } else {
-          document.getElementById("keyBox").innerText = "Không có key nào!";
-          statusMessage.innerText = "Lỗi: File JSON không chứa key hợp lệ!";
+        let keys = [];
+        if (Array.isArray(data)) {
+          keys = data;
+        } else if (data.keys && Array.isArray(data.keys)) {
+          keys = data.keys;
+        } else if (data.vip_keys && Array.isArray(data.vip_keys)) {
+          keys = data.vip_keys;
         }
-      } catch (err) {
-        document.getElementById("keyBox").innerText = "Lỗi tải key!";
-        statusMessage.innerText = `Lỗi: Không thể tải key (${err.message})`;
-        console.error("Fetch error:", err);
+
+        if (keys.length === 0) {
+          titleEl.textContent = 'Không tìm thấy key hợp lệ trong dữ liệu!';
+          status.textContent = '';
+          return;
+        }
+
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        keyBox.textContent = randomKey;
+        keyBoxWrapper.style.display = 'flex';
+        copyBtn.style.display = 'inline-block';
+
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        titleEl.textContent = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
+
+        status.textContent = 'Tải key thành công!';
+
+      } catch (error) {
+        titleEl.textContent = 'Lỗi tải key: ' + error.message;
+        status.textContent = '';
+        keyBoxWrapper.style.display = 'none';
+        copyBtn.style.display = 'none';
+        console.error(error);
       }
     }
+
+    copyBtn.addEventListener('click', () => {
+      const key = keyBox.textContent;
+      if (!key || key === '...') return;
+      navigator.clipboard.writeText(key).then(() => {
+        status.textContent = 'Đã sao chép key vào clipboard!';
+        setTimeout(() => status.textContent = '', 2500);
+      }).catch(() => {
+        status.textContent = 'Copy không thành công. Vui lòng copy thủ công.';
+        setTimeout(() => status.textContent = '', 3000);
+      });
+    });
 
     loadKey();
   </script>
