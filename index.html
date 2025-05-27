@@ -222,37 +222,6 @@
     const storageKey = `key_${linkId}`;
     const keyURL = `https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key_data.json?nocache=${Date.now()}`;
     const statusMessage = document.getElementById("statusMessage");
-    const BAN_DURATION = 10 * 24 * 60 * 60 * 1000; // 10 ngày (ms)
-
-    // Lấy danh sách key bị cấm từ localStorage
-    function getBannedKeys() {
-      const banned = localStorage.getItem('banned_keys');
-      return banned ? JSON.parse(banned) : {};
-    }
-
-    // Lưu danh sách key bị cấm
-    function saveBannedKeys(bannedKeys) {
-      localStorage.setItem('banned_keys', JSON.stringify(bannedKeys));
-    }
-
-    // Kiểm tra key có bị cấm không
-    function isKeyBanned(key, bannedKeys) {
-      if (!bannedKeys[key]) return false;
-      const banTime = bannedKeys[key];
-      const now = Date.now();
-      return now - banTime < BAN_DURATION;
-    }
-
-    // Loại key hết hạn cấm
-    function cleanBannedKeys(bannedKeys) {
-      const now = Date.now();
-      for (const key in bannedKeys) {
-        if (now - bannedKeys[key] >= BAN_DURATION) {
-          delete bannedKeys[key];
-        }
-      }
-      saveBannedKeys(bannedKeys);
-    }
 
     async function checkLink() {
       statusMessage.innerText = "Đang kiểm tra link...";
@@ -298,39 +267,20 @@
         console.log("Data received:", data);
 
         let keys = Array.isArray(data) ? data : (data.vip_keys || data.keys);
-        if (!Array.isArray(keys) || keys.length === 0) {
+        if (Array.isArray(keys) && keys.length > 0) {
+          const randomKey = keys[Math.floor(Math.random() * keys.length)];
+          document.getElementById("keyBox").innerText = randomKey;
+          localStorage.setItem(storageKey, randomKey);
+          const today = new Date();
+          const dd = String(today.getDate()).padStart(2, '0');
+          const mm = String(today.getMonth() + 1).padStart(2, '0');
+          const yyyy = today.getFullYear();
+          document.getElementById("title").innerText = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
+          statusMessage.innerText = "Tải key thành công!";
+        } else {
           document.getElementById("keyBox").innerText = "Không có key nào!";
           statusMessage.innerText = "Lỗi: File JSON không chứa key hợp lệ!";
-          return;
         }
-
-        // Lấy danh sách key bị cấm
-        let bannedKeys = getBannedKeys();
-        cleanBannedKeys(bannedKeys);
-
-        // Lọc key không bị cấm
-        const availableKeys = keys.filter(key => !isKeyBanned(key, bannedKeys));
-        if (availableKeys.length === 0) {
-          document.getElementById("keyBox").innerText = "Không có key khả dụng!";
-          statusMessage.innerText = "Lỗi: Tất cả key đang bị cấm, thử lại sau!";
-          return;
-        }
-
-        // Chọn key ngẫu nhiên
-        const randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
-        document.getElementById("keyBox").innerText = randomKey;
-        localStorage.setItem(storageKey, randomKey);
-
-        // Cấm key trong 10 ngày
-        bannedKeys[randomKey] = Date.now();
-        saveBannedKeys(bannedKeys);
-
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const yyyy = today.getFullYear();
-        document.getElementById("title").innerText = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
-        statusMessage.innerText = Tải key thành công!");
       } catch (err) {
         document.getElementById("keyBox").innerText = "Lỗi tải key!";
         statusMessage.innerText = `Lỗi: Không thể tải key (${err.message})`;
