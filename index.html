@@ -187,7 +187,7 @@
   <div class="status-message" id="statusMessage"></div>
   <button class="copy-btn" onclick="copyKey()">Sao chép key</button>
   <script>
-    // Tạo hiệu ứng cánh hoa rơi
+    // Tạo cánh hoa
     for (let i = 0; i < 50; i++) {
       const petal = document.createElement('div');
       petal.classList.add('petal');
@@ -199,7 +199,7 @@
       document.body.appendChild(petal);
     }
 
-    // Tạo hiệu ứng lấp lánh ngôi sao
+    // Tạo ngôi sao lấp lánh
     for (let i = 0; i < 12; i++) {
       const sparkle = document.createElement('div');
       sparkle.classList.add('sparkle');
@@ -209,7 +209,7 @@
       document.querySelector('.key-box-wrapper').appendChild(sparkle);
     }
 
-    // Copy Key
+    // Sao chép key
     function copyKey() {
       const key = document.getElementById("keyBox").innerText;
       navigator.clipboard.writeText(key).then(() => {
@@ -220,37 +220,16 @@
       });
     }
 
-    // Lấy ID từ URL
+    // Lấy ID từ URL và cấu hình
     const urlParams = new URLSearchParams(window.location.search);
     const linkId = urlParams.get('id') || 'default';
     const storageKey = `key_${linkId}`;
-    const keyURL = "https://raw.githubusercontent.com/tsanduongvi123/Gopcode/main/key_data.json?cache=" + new Date().getTime();
+    const keyURL = "https://gopcode.vercel.app/api/key-gen"; // Thay bằng URL Vercel
     const statusMessage = document.getElementById("statusMessage");
 
-    // Kiểm tra link trước khi fetch
-    async function checkLink() {
-      statusMessage.innerText = "Đang kiểm tra link...";
-      try {
-        const response = await fetch(keyURL, { method: 'HEAD' });
-        if (response.ok) {
-          statusMessage.innerText = "Link hợp lệ, đang tải key...";
-          return true;
-        } else {
-          statusMessage.innerText = `Lỗi: Không tìm thấy file key.json (Status: ${response.status})`;
-          document.getElementById("keyBox").innerText = "Lỗi tải key!";
-          return false;
-        }
-      } catch (err) {
-        statusMessage.innerText = "Lỗi kết nối đến GitHub!";
-        document.getElementById("keyBox").innerText = "Lỗi tải key!";
-        console.error("Link check error:", err);
-        return false;
-      }
-    }
-
-    // Tải và hiển thị key
+    // Tải key
     async function loadKey() {
-      // Kiểm tra key đã lưu trong localStorage
+      // Kiểm tra localStorage
       const storedKey = localStorage.getItem(storageKey);
       if (storedKey) {
         document.getElementById("keyBox").innerText = storedKey;
@@ -263,21 +242,25 @@
         return;
       }
 
-      const linkValid = await checkLink();
-      if (!linkValid) return;
-
+      statusMessage.innerText = "Đang lấy key từ server...";
       try {
-        const res = await fetch(keyURL);
-        console.log("Response status:", res.status);
+        // Lấy IP người dùng
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const { ip } = await ipRes.json();
+        
+        // Gửi yêu cầu đến serverless
+        const res = await fetch(keyURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: linkId, ip })
+        });
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         const data = await res.json();
-        console.log("Data received:", data);
 
-        let keys = Array.isArray(data) ? data : (data.vip_keys || data.keys);
-        if (Array.isArray(keys) && keys.length > 0) {
-          const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        if (data.success && data.key) {
+          const randomKey = data.key;
           document.getElementById("keyBox").innerText = randomKey;
-          localStorage.setItem(storageKey, randomKey); // Lưu key vào localStorage
+          localStorage.setItem(storageKey, randomKey);
           const today = new Date();
           const dd = String(today.getDate()).padStart(2, '0');
           const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -285,8 +268,8 @@
           document.getElementById("title").innerText = `Cảm ơn, đây là key ngày ${dd}/${mm}/${yyyy} của bạn`;
           statusMessage.innerText = "Tải key thành công!";
         } else {
-          document.getElementById("keyBox").innerText = "Không có key nào!";
-          statusMessage.innerText = "Lỗi: File JSON không chứa key hợp lệ!";
+          document.getElementById("keyBox").innerText = "Không có key khả dụng!";
+          statusMessage.innerText = "Lỗi: " + (data.error || "Không thể lấy key!");
         }
       } catch (err) {
         document.getElementById("keyBox").innerText = "Lỗi tải key!";
